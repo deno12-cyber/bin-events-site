@@ -24,20 +24,76 @@ import {
   Home,
   Briefcase,
   Image as ImageIcon,
-  MessageSquare
+  MessageSquare,
+  Facebook
 } from 'lucide-react';
 
 // --- Assets ---
 const BASE_URL = "";
 const LOGO_URL = "/Utool-20260411-152848548.png";
-// Since I can't "upload" the file, I will use the image URL provided in the prompt if it was a file, 
-// but usually I should use a placeholder or the actual URL if I had it. 
-// I'll use a descriptive placeholder that looks like the logo provided.
-const BIN_LOGO_ICON = "https://images.squarespace-cdn.com/content/v1/5f1b2b8e3e4a4a4a4a4a4a4a/1595600000000-XXXXXXXXXXXX/BIN_LOGO.png"; // Placeholder
-// Actually, I'll use the image from the user's prompt which is usually available at a specific path if they uploaded it.
-// Given the prompt, I'll use the provided image as a base.
+const INSTAGRAM_URL = "https://www.instagram.com/mc_ssalongo_koire_bin_alex?igsh=MXd0OTRjNTRtNDAxOA%3D%3D&utm_source=qr";
+const FACEBOOK_URL = "https://www.facebook.com/share/1GUmsqwCnJ/?mibextid=wwXIfr";
+const WHATSAPP_NUMBER = "256705435424";
+const EMAIL_ADDRESS = "alexgillig256@gmail.com";
+const SLOGAN = "It's all About Talent";
 
 // --- Components ---
+
+const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
+  useEffect(() => {
+    const timer = setTimeout(onComplete, 3500);
+    return () => clearTimeout(timer);
+  }, [onComplete]);
+
+  return (
+    <motion.div 
+      initial={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}
+      className="fixed inset-0 z-[200] bg-black flex flex-col items-center justify-center p-6"
+    >
+      <motion.div
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+        className="relative mb-8"
+      >
+        <div className="absolute inset-0 bg-gold/20 blur-3xl rounded-full scale-150 animate-pulse"></div>
+        <img 
+          src={LOGO_URL} 
+          alt="BIN Events Logo" 
+          className="h-56 md:h-80 w-auto object-contain relative z-10"
+          referrerPolicy="no-referrer"
+        />
+      </motion.div>
+      
+      <motion.div
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.8 }}
+        className="text-center"
+      >
+        <h2 className="text-white text-xl md:text-2xl font-serif italic mb-2 tracking-widest">
+          BIN Events & Management
+        </h2>
+        <div className="w-12 h-[1px] bg-gold mx-auto mb-4"></div>
+        <p className="text-gold uppercase tracking-[0.4em] text-[10px] md:text-xs font-light">
+          {SLOGAN}
+        </p>
+      </motion.div>
+
+      {/* Loading bar */}
+      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 w-48 h-[1px] bg-white/10 overflow-hidden">
+        <motion.div 
+          initial={{ x: "-100%" }}
+          animate={{ x: "100%" }}
+          transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+          className="w-full h-full bg-gold"
+        />
+      </div>
+    </motion.div>
+  );
+};
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -71,7 +127,7 @@ const Navbar = () => {
               referrerPolicy="no-referrer"
             />
             <div className="flex flex-col leading-none">
-              <span className="text-white text-[10px] uppercase tracking-[0.3em] font-light group-hover:text-gold transition-colors">Events & Management Services</span>
+              <span className="text-white text-[10px] uppercase tracking-[0.3em] font-light group-hover:text-gold transition-colors">Events & Management</span>
             </div>
           </a>
 
@@ -234,7 +290,7 @@ const About = () => {
             Crafting Excellence in Every Detail
           </h3>
           <p className="text-white/60 text-lg leading-relaxed mb-8">
-            BIN Events and Management Services is more than an event management company; we are architects of memories. Based in the heart of Kampala, we bring a touch of sophistication and local flair to every occasion. It's all about talent, and we ensure the best talent is at your service.
+            BIN Events and Management is more than an event management company; we are architects of memories. Based in the heart of Kampala, we bring a touch of sophistication and local flair to every occasion. It's all about talent, and we ensure the best talent is at your service.
           </p>
           <div className="grid grid-cols-2 gap-8">
             <div>
@@ -280,9 +336,11 @@ const Services = () => {
       details: 'Our comprehensive event planning service covers venue selection, vendor management, budget tracking, and on-site coordination. We specialize in creating bespoke experiences that reflect your unique personality and vision.',
       icon: <Calendar className="text-gold" size={32} />,
       talent: [
-        { name: 'Wedding Planning', image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=400' },
-        { name: 'Corporate Galas', image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=400' },
-        { name: 'Private Parties', image: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&q=80&w=400' },
+        { name: 'Wedding Planning', image: '/q.jpeg' },
+        { name: 'Corporate Galas', image: '/s.jpeg' },
+        { name: 'Private Parties', image: '/o.jpeg' },
+        { name: 'Event Design', image: '/m.jpeg' },
+        { name: 'Bespoke Management', image: '/l.jpeg' },
       ]
     },
     {
@@ -303,9 +361,11 @@ const Services = () => {
       details: 'We provide premium audio solutions tailored to your venue\'s acoustics. Our inventory includes high-fidelity speakers, wireless microphones, and digital mixers.',
       icon: <Music className="text-gold" size={32} />,
       talent: [
-        { name: 'Line Array Systems', image: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&q=80&w=400' },
-        { name: 'Digital Mixers', image: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&q=80&w=400' },
-        { name: 'Wireless Tech', image: 'https://images.unsplash.com/photo-1520529011850-be19705919bb?auto=format&fit=crop&q=80&w=400' },
+        { name: 'Premium Audio Setup', image: '/r.jpeg' },
+        { name: 'Professional PA System', image: '/t.jpeg' },
+        { name: 'Event Sound Management', image: '/y.jpeg' },
+        { name: 'High-Fidelity Speakers', image: '/v.jpeg' },
+        { name: 'Digital Audio Tech', image: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&q=80&w=400' },
       ]
     },
     {
@@ -314,9 +374,11 @@ const Services = () => {
       details: 'Entertainment is the soul of any event. We manage relationships with top musicians, dancers, and performers.',
       icon: <Users className="text-gold" size={32} />,
       talent: [
-        { name: 'Live Bands', image: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&q=80&w=400' },
-        { name: 'Dance Troupes', image: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&q=80&w=400' },
-        { name: 'Solo Vocalists', image: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&q=80&w=400' },
+        { name: 'Elite Performers', image: '/j.jpeg' },
+        { name: 'Talent Showcase', image: '/k.jpeg' },
+        { name: 'Live Entertainment', image: '/n.jpeg' },
+        { name: 'Professional Artists', image: '/p.jpeg' },
+        { name: 'Stage Presence', image: '/z.jpeg' },
       ]
     },
     {
@@ -327,6 +389,10 @@ const Services = () => {
       talent: [
         { name: 'Professional Ushers', image: '/IMG_6464.JPG' },
         { name: 'Elite Ushering Team', image: '/IMG_6467.JPG' },
+        { name: 'Vio Excellence', image: '/11.JPG' },
+        { name: 'Elite Service', image: '/12.JPG' },
+        { name: 'Professional Protocol', image: '/13.JPG' },
+        { name: 'Luxury Ushering', image: '/14.JPG' },
         { name: 'Corporate Vests Team', image: '/IMG_6468.JPG' },
         { name: 'Event Hostesses', image: '/IMG_6469.JPG' },
         { name: 'Vio Service Team', image: '/IMG_6691.JPG' },
@@ -464,7 +530,7 @@ const Testimonials = () => {
 
   const testimonials = [
     {
-      quote: "BIN Events and Management Services transformed our corporate gala into a masterpiece. Their attention to detail and professionalism is unmatched in Uganda.",
+      quote: "BIN Events and Management transformed our corporate gala into a masterpiece. Their attention to detail and professionalism is unmatched in Uganda.",
       author: "Sarah Namubiru",
       company: "CEO, Pearl Dynamics",
     },
@@ -474,7 +540,7 @@ const Testimonials = () => {
       company: "Private Client",
     },
     {
-      quote: "The sound quality and artist management for our concert were world-class. BIN Events and Management Services is the gold standard for large-scale productions.",
+      quote: "The sound quality and artist management for our concert were world-class. BIN Events and Management is the gold standard for large-scale productions.",
       author: "Robert Kato",
       company: "Director, Pulse Entertainment",
     },
@@ -671,6 +737,14 @@ const Contact = () => {
                 <Video size={20} className="text-gold group-hover:text-black" />
                 <span className="text-xs uppercase tracking-widest font-bold">TikTok</span>
               </a>
+              <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 bg-white/5 border border-white/10 px-6 py-3 rounded-full hover:bg-gold hover:text-black transition-all duration-300 group">
+                <Instagram size={20} className="text-gold group-hover:text-black" />
+                <span className="text-xs uppercase tracking-widest font-bold">Instagram</span>
+              </a>
+              <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 bg-white/5 border border-white/10 px-6 py-3 rounded-full hover:bg-gold hover:text-black transition-all duration-300 group">
+                <Facebook size={20} className="text-gold group-hover:text-black" />
+                <span className="text-xs uppercase tracking-widest font-bold">Facebook</span>
+              </a>
             </div>
           </div>
         </motion.div>
@@ -765,20 +839,21 @@ const Footer = () => {
               referrerPolicy="no-referrer"
             />
             <div className="flex flex-col leading-none">
-              <span className="text-white text-[8px] uppercase tracking-[0.3em] font-light group-hover:text-gold transition-colors">Events & Management Services</span>
+              <span className="text-white text-[8px] uppercase tracking-[0.3em] font-light group-hover:text-gold transition-colors">Events & Management</span>
             </div>
           </a>
-          <p className="text-white/20 text-[10px] uppercase tracking-[0.3em]">It's all About Talent</p>
+          <p className="text-white/20 text-[10px] uppercase tracking-[0.3em]">{SLOGAN}</p>
         </div>
 
         <div className="flex gap-8">
           <a href="https://youtube.com/@ssalongokoirebinalex?si=12Iicai8UIrdim4k" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-gold transition-colors"><Youtube size={20} /></a>
           <a href="https://www.tiktok.com/@mcssalongokoirebinalex?_r=1&_t=ZS-95SJU02TT9u" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-gold transition-colors"><Video size={20} /></a>
-          <a href="#" className="text-white/40 hover:text-gold transition-colors"><Instagram size={20} /></a>
+          <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-gold transition-colors"><Instagram size={20} /></a>
+          <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-gold transition-colors"><Facebook size={20} /></a>
         </div>
 
         <p className="text-white/30 text-xs">
-          © {new Date().getFullYear()} BIN Events and Management Services. All Rights Reserved.
+          © {new Date().getFullYear()} BIN Events and Management. All Rights Reserved.
         </p>
       </div>
     </footer>
@@ -802,21 +877,36 @@ const WhatsAppButton = () => {
 };
 
 export default function App() {
+  const [showSplash, setShowSplash] = useState(true);
+
   return (
     <div className="relative md:bg-luxury-black">
-      <div className="md:max-w-none md:mx-0 max-w-md mx-auto min-h-screen bg-black shadow-2xl relative overflow-x-hidden md:bg-transparent">
-        <Navbar />
-        <main className="pb-20 md:pb-0">
-          <Hero />
-          <About />
-          <Services />
-          <Gallery />
-          <Testimonials />
-          <Contact />
-        </main>
-        <Footer />
-        <WhatsAppButton />
-      </div>
+      <AnimatePresence>
+        {showSplash && (
+          <SplashScreen onComplete={() => setShowSplash(false)} />
+        )}
+      </AnimatePresence>
+
+      {!showSplash && (
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="md:max-w-none md:mx-0 max-w-md mx-auto min-h-screen bg-black shadow-2xl relative overflow-x-hidden md:bg-transparent"
+        >
+          <Navbar />
+          <main className="pb-20 md:pb-0">
+            <Hero />
+            <About />
+            <Services />
+            <Gallery />
+            <Testimonials />
+            <Contact />
+          </main>
+          <Footer />
+          <WhatsAppButton />
+        </motion.div>
+      )}
     </div>
   );
 }
