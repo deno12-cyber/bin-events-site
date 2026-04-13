@@ -33,6 +33,7 @@ const BASE_URL = "";
 const LOGO_URL = "/Utool-20260411-152848548.png";
 const INSTAGRAM_URL = "https://www.instagram.com/mc_ssalongo_koire_bin_alex?igsh=MXd0OTRjNTRtNDAxOA%3D%3D&utm_source=qr";
 const FACEBOOK_URL = "https://www.facebook.com/share/1GUmsqwCnJ/?mibextid=wwXIfr";
+const X_URL = "https://x.com/binmikolo?s=21";
 const WHATSAPP_NUMBER = "256705435424";
 const EMAIL_ADDRESS = "alexgillig256@gmail.com";
 const SLOGAN = "It's all About Talent";
@@ -260,6 +261,24 @@ const Hero = () => {
             <ArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" size={18} />
           </a>
         </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1 }}
+          className="mt-12 flex items-center gap-6"
+        >
+          <span className="text-[10px] uppercase tracking-[0.3em] text-white/40">Follow us</span>
+          <div className="flex gap-4">
+            <a href={X_URL} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-gold transition-colors">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L18.901 1.153ZM17.61 20.644h2.039L6.486 3.24H4.298L17.61 20.644Z"/>
+              </svg>
+            </a>
+            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-gold transition-colors"><Instagram size={18} /></a>
+            <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-gold transition-colors"><Facebook size={18} /></a>
+          </div>
+        </motion.div>
       </div>
 
       {/* Scroll Indicator */}
@@ -353,6 +372,11 @@ const Services = () => {
         { name: 'Mc SALONGO KOIRE bin ALEX', image: '/IMG_9317.PNG' },
         { name: 'Mc bakiddawo', image: '/WhatsApp Image 2026-04-11 .jpeg' },
         { name: 'Mc bakiddawo', image: '/WhatsApp Image 2026-04-11 at 7.21.03 AM.jpeg' },
+        { name: 'Mc SALONGO KOIRE bin ALEX', image: '/21.PNG' },
+        { name: 'Mc SALONGO KOIRE bin ALEX', image: '/22.JPG' },
+        { name: 'Mc SALONGO KOIRE bin ALEX', image: '/23.JPG' },
+        { name: 'Mc SALONGO KOIRE bin ALEX', image: '/25.PNG' },
+        { name: 'Mc SALONGO KOIRE bin ALEX', image: '/x.jpeg' },
       ]
     },
     {
@@ -606,6 +630,15 @@ const Gallery = () => {
     '/2.JPG',
     '/3.PNG',
     '/4.JPG',
+    '/11.JPG',
+    '/12.JPG',
+    '/13.JPG',
+    '/14.JPG',
+    '/21.PNG',
+    '/22.JPG',
+    '/23.JPG',
+    '/25.PNG',
+    '/x.jpeg',
     '/IMG_6464.JPG',
     '/IMG_6467.JPG',
     '/IMG_6468.JPG',
@@ -618,6 +651,11 @@ const Gallery = () => {
     '/IMG_9317.PNG',
     '/WhatsApp Image 2026-04-11 .jpeg',
     '/WhatsApp Image 2026-04-11 at 7.21.03 AM.jpeg',
+    '/21.PNG',
+    '/22.JPG',
+    '/23.JPG',
+    '/25.PNG',
+    '/x.jpeg',
   ];
 
   return (
@@ -741,6 +779,12 @@ const Contact = () => {
                 <Instagram size={20} className="text-gold group-hover:text-black" />
                 <span className="text-xs uppercase tracking-widest font-bold">Instagram</span>
               </a>
+              <a href={X_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 bg-white/5 border border-white/10 px-6 py-3 rounded-full hover:bg-gold hover:text-black transition-all duration-300 group">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="text-gold group-hover:text-black transition-colors">
+                  <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L18.901 1.153ZM17.61 20.644h2.039L6.486 3.24H4.298L17.61 20.644Z"/>
+                </svg>
+                <span className="text-xs uppercase tracking-widest font-bold">X (Twitter)</span>
+              </a>
               <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 bg-white/5 border border-white/10 px-6 py-3 rounded-full hover:bg-gold hover:text-black transition-all duration-300 group">
                 <Facebook size={20} className="text-gold group-hover:text-black" />
                 <span className="text-xs uppercase tracking-widest font-bold">Facebook</span>
@@ -848,6 +892,11 @@ const Footer = () => {
         <div className="flex gap-8">
           <a href="https://youtube.com/@ssalongokoirebinalex?si=12Iicai8UIrdim4k" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-gold transition-colors"><Youtube size={20} /></a>
           <a href="https://www.tiktok.com/@mcssalongokoirebinalex?_r=1&_t=ZS-95SJU02TT9u" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-gold transition-colors"><Video size={20} /></a>
+          <a href={X_URL} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-gold transition-colors">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L18.901 1.153ZM17.61 20.644h2.039L6.486 3.24H4.298L17.61 20.644Z"/>
+            </svg>
+          </a>
           <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-gold transition-colors"><Instagram size={20} /></a>
           <a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-gold transition-colors"><Facebook size={20} /></a>
         </div>
